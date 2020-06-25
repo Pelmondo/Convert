@@ -13,8 +13,10 @@
 		5664D9B124A240290089ED9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5664D9B024A240290089ED9E /* Assets.xcassets */; };
 		5664D9B424A240290089ED9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5664D9B224A240290089ED9E /* LaunchScreen.storyboard */; };
 		5664D9C024A3B2290089ED9E /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9BF24A3B2290089ED9E /* MainPresenter.swift */; };
-		5664D9C224A457AF0089ED9E /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9C124A457AF0089ED9E /* Money.swift */; };
+		5664D9C224A457AF0089ED9E /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9C124A457AF0089ED9E /* Currencies.swift */; };
 		5664D9C524A45F680089ED9E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9C424A45F680089ED9E /* NetworkService.swift */; };
+		5664D9C724A46DE50089ED9E /* MainViewComtroller + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9C624A46DE50089ED9E /* MainViewComtroller + Extension.swift */; };
+		5664D9CB24A48B620089ED9E /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9CA24A48B620089ED9E /* ModuleBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +28,10 @@
 		5664D9B324A240290089ED9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5664D9B524A240290089ED9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5664D9BF24A3B2290089ED9E /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
-		5664D9C124A457AF0089ED9E /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		5664D9C124A457AF0089ED9E /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
 		5664D9C424A45F680089ED9E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5664D9C624A46DE50089ED9E /* MainViewComtroller + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewComtroller + Extension.swift"; sourceTree = "<group>"; };
+		5664D9CA24A48B620089ED9E /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			children = (
 				5664D9A724A240220089ED9E /* AppDelegate.swift */,
 				5664D9A924A240220089ED9E /* SceneDelegate.swift */,
+				5664D9CA24A48B620089ED9E /* ModuleBuilder.swift */,
 				5664D9C324A45F470089ED9E /* ServiceLayer */,
 				5664D9BC24A3B1C70089ED9E /* MainModule */,
 				5664D9B024A240290089ED9E /* Assets.xcassets */,
@@ -75,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				5664D9AB24A240220089ED9E /* MainViewController.swift */,
+				5664D9C624A46DE50089ED9E /* MainViewComtroller + Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -92,7 +98,7 @@
 		5664D9BD24A3B1E20089ED9E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5664D9C124A457AF0089ED9E /* Money.swift */,
+				5664D9C124A457AF0089ED9E /* Currencies.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,7 +190,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5664D9AC24A240220089ED9E /* MainViewController.swift in Sources */,
-				5664D9C224A457AF0089ED9E /* Money.swift in Sources */,
+				5664D9C724A46DE50089ED9E /* MainViewComtroller + Extension.swift in Sources */,
+				5664D9C224A457AF0089ED9E /* Currencies.swift in Sources */,
+				5664D9CB24A48B620089ED9E /* ModuleBuilder.swift in Sources */,
 				5664D9A824A240220089ED9E /* AppDelegate.swift in Sources */,
 				5664D9AA24A240220089ED9E /* SceneDelegate.swift in Sources */,
 				5664D9C524A45F680089ED9E /* NetworkService.swift in Sources */,

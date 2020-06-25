@@ -16,3 +16,12 @@ struct Currencies: Decodable {
     }
 }
 
+struct Money: Decodable {
+    let rates: [String: [String:String]]
+}
+
+struct Convert {
+    let to: String
+    let from: String
+    let amount: String
+}

@@ -9,25 +9,36 @@
 import Foundation
 
 protocol MainViewProtocol: class {
-    //
+    func succses(_ convert: Convert?)
+    func failure()
 }
 
 protocol MainViewPresenterProtocol: class {
-    init(view: MainViewProtocol, money: Currencies)
-    func show()
+    init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
+    func convertIT(_ it: Convert)
 }
 
 class MainPresenter: MainViewPresenterProtocol {
     let view: MainViewProtocol
-    let money: Currencies
-    
-    required init(view: MainViewProtocol, money: Currencies) {
+    let networkService: NetworkServiceProtocol
+    var convert: Convert?
+    required init(view: MainViewProtocol, networkService: NetworkServiceProtocol ) {
         self.view = view
-        self.money = money
+        self.networkService = networkService
     }
     
-    func show() {
-        // SomeLogick here
+    func convertIT(_ it: Convert) {
+        self.networkService.doConvert(it) {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let convert):
+                self.convert = convert
+                self.view.succses(convert)
+            case .failure(let error):
+                self.view.failure()
+            }
+            
+        }
     }
     
     
