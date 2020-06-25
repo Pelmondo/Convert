@@ -10,7 +10,7 @@ import Foundation
 
 protocol NetworkServiceProtocol: class {
     func doConvert(_ it: Convert, complition: @escaping (Result<Convert?, Error>) -> ())
-    func getCurrency()
+    func getCurrency(complition: @escaping (Result<Currencies?, Error>) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -46,7 +46,7 @@ class NetworkService: NetworkServiceProtocol {
             }.resume()
     }
 
-    func getCurrency() {
+    func getCurrency(complition: @escaping (Result<Currencies?, Error>) -> ()) {
         let headers = [
             "x-rapidapi-host": "currency-converter5.p.rapidapi.com",
             "x-rapidapi-key": "59afa4a6ebmsh81d36250bd2951dp1c25aejsn41c2c1538fe0"
@@ -68,9 +68,10 @@ class NetworkService: NetworkServiceProtocol {
                 do {
                     print(data!)
                     let currencies = try JSONDecoder().decode(Currencies.self, from: data!)
-                    print(currencies)
+                    complition(.success(currencies))
                 } catch {
                     print(error.localizedDescription)
+                    complition(.failure(error))
                 }
             }.resume()
         }

@@ -15,17 +15,10 @@ extension MainViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 5
+        textField.keyboardType = .decimalPad
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.gray.cgColor
         return textField
-    }
-    
-    func makeActivitiIndicatorView() -> UIActivityIndicatorView {
-        let activity = UIActivityIndicatorView(style: .large)
-        activity.color = .gray
-        activity.hidesWhenStopped = true
-        activity.translatesAutoresizingMaskIntoConstraints = false
-        return activity
     }
     
     func makeUIButton() -> UIButton {
@@ -41,8 +34,18 @@ extension MainViewController {
         let button = UIButton(type: .roundedRect)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(name, for: .normal)
+        button.addTarget(self, action: #selector(currButtonTapped(sender:)), for: .touchUpInside)
         button.backgroundColor = .white
         button.layer.cornerRadius = 5
         return button
+    }
+}
+
+extension MainViewController: MainViewDelegate {
+    func update(_ name: String, tag: Int) {
+        tag == 1 ? self.currenciesOutButton.setTitle(name, for: .normal)
+            : self.currenciesInButton.setTitle(name, for: .normal)
+        
+        tag == 1 ? (self.outTextField.placeholder = name) : (self.inTextField.placeholder = name)
     }
 }

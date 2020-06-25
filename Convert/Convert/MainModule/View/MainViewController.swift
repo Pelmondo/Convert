@@ -14,57 +14,96 @@ class MainViewController: UIViewController {
     lazy var outTextField = makeTextField()
     lazy var inTextField = makeTextField()
     lazy var convButton = makeUIButton()
-    lazy var currenciesOutButton = makeCurrUIButton("AUD")
+    lazy var currenciesOutButton = makeCurrUIButton("RUB")
     lazy var currenciesInButton = makeCurrUIButton("USD")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Convert"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        setUpSettings()
+        convButton.isHidden = true
+        setUpLayout()
+    }
+//Если включить кнопку конвертации
+//    @objc func buttonTaped(sender: UIButton) {
+//
+//    }
+    @objc func dissmissMyKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func currButtonTapped(sender: UIButton) {
+        //костыли, хочу быстрее сделать. поправтиь если будет время!
+        let secondVC = ModuleBuilder.createSecondModule() as! SecondViewProtocol
+        secondVC.delegate = self
+        secondVC.tag = sender.tag
+        navigationController?.pushViewController(secondVC as! UIViewController, animated: true)
+        
+    }
+    
+    @objc func textDidEndEditing(sender: UITextField) {
+        if sender.tag == 1 {
+            guard let amount = outTextField.text else {return}
+            guard let to = currenciesInButton.titleLabel?.text else {return}
+            guard let from = currenciesOutButton.titleLabel?.text else {return}
+            presenter.convertIT(Convert(to: to, from: from, amount: amount), tag: sender.tag)
+            setClear()
+        } else {
+            guard let amount = inTextField.text else {return}
+            guard let to = currenciesOutButton.titleLabel?.text else {return}
+            guard let from = currenciesInButton.titleLabel?.text else {return}
+            presenter.convertIT(Convert(to: to, from: from, amount: amount), tag: sender.tag)
+            setClear()
+            }
+    }
+}
+
+extension MainViewController: MainViewProtocol {
+    func succses(_ convert: Convert?, _ tag: Int) {
+        if tag == 1 {
+            DispatchQueue.main.async {
+                self.inTextField.text = convert?.amount
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.outTextField.text = convert?.amount
+            }
+        }
+    }
+    
+    func failure(_ error: Error) {
+        print(error)
+    }
+}
+//MARK: - LayOut settings
+extension MainViewController {
+    fileprivate func setUpSettings() {
         view.addSubview(outTextField)
         view.addSubview(convButton)
         view.addSubview(currenciesOutButton)
         view.addSubview(inTextField)
         view.addSubview(currenciesInButton)
-        setUpLayout()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dissmissMyKeyboard))
+        view.addGestureRecognizer(tap)
+//        convButton.addTarget(self, action: #selector(buttonTaped(sender:)), for: .touchUpInside)
+        currenciesInButton.tag = 0
+        currenciesOutButton.tag = 1
+        outTextField.tag = 1
+        inTextField.tag = 0
+        inTextField.addTarget(self, action: #selector(textDidEndEditing(sender:)), for: .editingChanged)
+        outTextField.addTarget(self, action: #selector(textDidEndEditing(sender:)), for: .editingChanged)
+        setClear()
         
     }
-
-    @objc func buttonTaped(sender: UIButton) {
-        guard let amount = inTextField.text else {return}
-        guard let to = currenciesOutButton.titleLabel?.text else {return}
-        guard let from = currenciesInButton.titleLabel?.text else {return}
-        presenter.convertIT(Convert(to: to, from: from, amount: amount))
+    
+    fileprivate func setClear() {
+        inTextField.clearsOnBeginEditing = true
+        outTextField.clearsOnBeginEditing = true
     }
     
-//    @objc func textDidEndEditing(sender: UITextField) {
-//        guard let amount = inTextField.text else {return}
-//        guard let to = currenciesOutButton.titleLabel?.text else {return}
-//        guard let from = currenciesInButton.titleLabel?.text else {return}
-//        presenter.convertIT(Convert(to: to, from: from, amount: amount))
-//    }
-}
-
-extension MainViewController: MainViewProtocol {
-    func succses(_ convert: Convert?) {
-        print("cool")
-        DispatchQueue.main.async {
-            self.outTextField.text = convert?.amount
-            self.currenciesOutButton.setTitle(convert?.to, for: .normal)
-            self.currenciesInButton.setTitle(convert?.from, for: .normal)
-        }
-    }
-    
-    
-    func failure() {
-        print("fool")
-    }
-}
-//MARK: - LayOut settings
-extension MainViewController {
     fileprivate func setUpLayout() {
-        
-        convButton.addTarget(self, action: #selector(buttonTaped(sender:)), for: .touchUpInside)
-//        inTextField.addTarget(self, action: #selector(textDidEndEditing(sender:)), for: .editingChanged)
         let constraints = [
             convButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             convButton.leadingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.leadingAnchor,
@@ -93,8 +132,6 @@ extension MainViewController {
             currenciesInButton.widthAnchor.constraint(equalToConstant: 42),
             currenciesInButton.trailingAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                           constant: -16),
-            
-            
         ]
         NSLayoutConstraint.activate(constraints)
     }

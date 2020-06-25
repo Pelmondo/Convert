@@ -11,7 +11,7 @@ import UIKit
 
 protocol Builder {
     static func createMainModule() -> UIViewController
-//    static func createComputerCardModule(computerId: Int?) -> UIViewController
+    static func createSecondModule() -> UIViewController
 }
 
 class ModuleBuilder: Builder {
@@ -19,6 +19,14 @@ class ModuleBuilder: Builder {
         let networkService = NetworkService()
         let view = MainViewController()
         let presenter = MainPresenter(view: view, networkService: networkService)
+        view.presenter = presenter
+        return view
+    }
+    
+    static func createSecondModule() -> UIViewController {
+        let networkService = NetworkService()
+        let view = SecondViewController()
+        let presenter = SecondPresenter(view: view, networkService: networkService)
         view.presenter = presenter
         return view
     }
