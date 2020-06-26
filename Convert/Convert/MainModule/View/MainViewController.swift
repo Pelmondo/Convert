@@ -40,7 +40,6 @@ class MainViewController: UIViewController {
         secondVC.delegate = self
         secondVC.tag = sender.tag
         navigationController?.pushViewController(secondVC as! UIViewController, animated: true)
-        
     }
     
     @objc func textDidEndEditing(sender: UITextField) {
@@ -97,7 +96,6 @@ extension MainViewController {
         outTextField.placeholder = "RUB"
         inTextField.placeholder = "USD"
         setClear()
-        
     }
     
     fileprivate func setClear() {

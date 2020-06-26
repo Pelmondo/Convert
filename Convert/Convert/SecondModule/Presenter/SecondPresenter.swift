@@ -43,7 +43,6 @@ class SecondPresenter: SecondPresenterProtocol {
                 print(error)
                 self.view.failure()
             }
-            
         }
     }
 }

@@ -48,16 +48,8 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Currencies"
         view.backgroundColor = .white
-        view.addSubview(tableView)
-        view.addSubview(searchBar)
-        tableView.isHidden = true
-        tableView.dataSource = self
-        tableView.delegate = self
-        searchBar.isHidden = true
-        searchBar.delegate = self
         presenter.getCurrencies()
-        view.addSubview(activity)
-        activity.startAnimating()
+        setSetting()
         setUpLayout()
     }
 }
@@ -128,6 +120,19 @@ extension SecondViewController: UISearchBarDelegate {
 }
 //MARK:- protocol
 extension SecondViewController {
+    
+    fileprivate func setSetting() {
+        view.addSubview(tableView)
+        view.addSubview(searchBar)
+        tableView.isHidden = true
+        tableView.dataSource = self
+        tableView.delegate = self
+        searchBar.isHidden = true
+        searchBar.delegate = self
+        view.addSubview(activity)
+        activity.startAnimating()
+    }
+    
     fileprivate func setUpLayout() {
             
             let constraints = [
@@ -142,7 +147,6 @@ extension SecondViewController {
                 
                 activity.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
                 activity.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-                
             ]
             NSLayoutConstraint.activate(constraints)
         }
