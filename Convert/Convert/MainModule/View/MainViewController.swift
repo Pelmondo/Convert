@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.connectionCheck()
         navigationItem.title = "Convert"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = #colorLiteral(red: 0.3086372316, green: 0.6579651833, blue: 0.7227996588, alpha: 1)
@@ -43,6 +44,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func textDidEndEditing(sender: UITextField) {
+        presenter.connectionCheck()
         if sender.tag == 1 {
             guard let amount = outTextField.text else {return}
             guard let to = currenciesInButton.titleLabel?.text else {return}
@@ -74,6 +76,13 @@ extension MainViewController: MainViewProtocol {
     
     func failure(_ error: Error) {
         print(error)
+    }
+    
+    func notConnection() {
+        let alert = UIAlertController(title: nil, message: "Проверьте интернет соединение", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+        }))
+        self.present(alert,animated: true, completion: nil)
     }
 }
 //MARK: - LayOut settings

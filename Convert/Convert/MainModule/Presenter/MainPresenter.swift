@@ -11,11 +11,13 @@ import Foundation
 protocol MainViewProtocol: class {
     func succses(_ convert: Convert?, _ tag: Int)
     func failure(_ error: Error)
+    func notConnection()
 }
 
 protocol MainViewPresenterProtocol: class {
     init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
     func convertIT(_ it: Convert, tag: Int)
+    func connectionCheck()
 }
 
 protocol MainViewDelegate: class {
@@ -29,6 +31,13 @@ class MainPresenter: MainViewPresenterProtocol {
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol ) {
         self.view = view
         self.networkService = networkService
+    }
+    
+    func connectionCheck() {
+        if ReachabilityService.isConnectedToNetwork() == true {
+        } else {
+            self.view.notConnection()
+        }
     }
     
     func convertIT(_ it: Convert, tag: Int) {

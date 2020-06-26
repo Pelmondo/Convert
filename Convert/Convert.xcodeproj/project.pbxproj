@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5650C1A624A5E2EF00B4FDBF /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5650C1A524A5E2EF00B4FDBF /* ReachabilityService.swift */; };
 		5664D9A824A240220089ED9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9A724A240220089ED9E /* AppDelegate.swift */; };
 		5664D9AA24A240220089ED9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9A924A240220089ED9E /* SceneDelegate.swift */; };
 		5664D9AC24A240220089ED9E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664D9AB24A240220089ED9E /* MainViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5650C1A524A5E2EF00B4FDBF /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		5664D9A424A240220089ED9E /* Convert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Convert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5664D9A724A240220089ED9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5664D9A924A240220089ED9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				5664D9C424A45F680089ED9E /* NetworkService.swift */,
+				5650C1A524A5E2EF00B4FDBF /* ReachabilityService.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			files = (
 				5664D9D524A4A66E0089ED9E /* SecondViewController.swift in Sources */,
 				5664D9AC24A240220089ED9E /* MainViewController.swift in Sources */,
+				5650C1A624A5E2EF00B4FDBF /* ReachabilityService.swift in Sources */,
 				5664D9C724A46DE50089ED9E /* MainViewComtroller + Extension.swift in Sources */,
 				5664D9C224A457AF0089ED9E /* Currencies.swift in Sources */,
 				5664D9D124A4A2900089ED9E /* Money.swift in Sources */,
