@@ -43,6 +43,10 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(secondVC as! UIViewController, animated: true)
     }
     
+    @objc func textBeginEditing(sender: UITextField) {
+        sender.tag == 1 ? (self.inTextField.text = "") : (self.outTextField.text = "")
+    }
+    
     @objc func textDidEndEditing(sender: UITextField) {
         presenter.connectionCheck()
         if sender.tag == 1 {
@@ -102,6 +106,8 @@ extension MainViewController {
         inTextField.tag = 0
         inTextField.addTarget(self, action: #selector(textDidEndEditing(sender:)), for: .editingChanged)
         outTextField.addTarget(self, action: #selector(textDidEndEditing(sender:)), for: .editingChanged)
+        inTextField.addTarget(self, action: #selector(textBeginEditing(sender:)), for: .editingDidBegin)
+        outTextField.addTarget(self, action: #selector(textBeginEditing(sender:)), for: .editingDidBegin)
         outTextField.placeholder = "RUB"
         inTextField.placeholder = "USD"
         setClear()
