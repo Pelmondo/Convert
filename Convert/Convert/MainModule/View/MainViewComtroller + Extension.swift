@@ -45,7 +45,8 @@ extension MainViewController: MainViewDelegate {
     func update(_ name: String, tag: Int) {
         tag == 1 ? self.currenciesOutButton.setTitle(name, for: .normal)
             : self.currenciesInButton.setTitle(name, for: .normal)
-        
         tag == 1 ? (self.outTextField.placeholder = name) : (self.inTextField.placeholder = name)
+        self.outTextField.text = ""
+        self.inTextField.text = ""
     }
 }

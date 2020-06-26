@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Convert"
         navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.3086372316, green: 0.6579651833, blue: 0.7227996588, alpha: 1)
         setUpSettings()
         convButton.isHidden = true
         setUpLayout()
@@ -94,6 +94,8 @@ extension MainViewController {
         inTextField.tag = 0
         inTextField.addTarget(self, action: #selector(textDidEndEditing(sender:)), for: .editingChanged)
         outTextField.addTarget(self, action: #selector(textDidEndEditing(sender:)), for: .editingChanged)
+        outTextField.placeholder = "RUB"
+        inTextField.placeholder = "USD"
         setClear()
         
     }
