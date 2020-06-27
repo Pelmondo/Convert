@@ -32,10 +32,10 @@ class NetworkService: NetworkServiceProtocol {
                     print(error)
                     return
                 }
-                
+            guard let data = data else { return }
                 do {
-                    print(data!)
-                    let currencies = try JSONDecoder().decode(Money.self, from: data!)
+                    print(data)
+                    let currencies = try JSONDecoder().decode(Money.self, from: data)
                     guard let amount = currencies.rates[it.to]?["rate_for_amount"] else {return}
                     let convert = Convert(to: it.to, from: it.from, amount: amount)
                     complition(.success(convert))
@@ -64,10 +64,10 @@ class NetworkService: NetworkServiceProtocol {
                     print(error)
                     return
                 }
-                
+            guard let data = data else { return }
                 do {
-                    print(data!)
-                    let currencies = try JSONDecoder().decode(Currencies.self, from: data!)
+                    print(data)
+                    let currencies = try JSONDecoder().decode(Currencies.self, from: data)
                     complition(.success(currencies))
                 } catch {
                     print(error.localizedDescription)
